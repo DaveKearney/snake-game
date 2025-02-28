@@ -54,10 +54,10 @@ function moveSnake() {
     const head = { x: snake[0].x + dx, y: snake[0].y + dy };
 
     // Check for wall collision
-    if (head.x >= canvas.width) head.x = 0;
-    if (head.x < 0) head.x = canvas.width - gridSize;
-    if (head.y >= canvas.height) head.y = 0;
-    if (head.y < 0) head.y = canvas.height - gridSize;
+    if (head.x >= canvas.width || head.x < 0 || head.y >= canvas.height || head.y < 0) {
+        gameOver();
+        return;
+    }
 
     // Check for self collision
     for (let i = 0; i < snake.length; i++) {
